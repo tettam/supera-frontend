@@ -1,4 +1,5 @@
 import axios from "axios";
+import { formatToLocalDateTime } from "../helpers/dataFilter";
 
 export const fetchApi = async (filters) => {
   try {
@@ -9,12 +10,12 @@ export const fetchApi = async (filters) => {
 
     //Mapeamento dos parâmetros conforme o backend
     const params = {
-      dataInicio: startDate,
-      dataFinal: endDate,
+      dataInicio: startDate && formatToLocalDateTime(startDate),
+      dataFinal: endDate && formatToLocalDateTime(endDate),
       nomeOperadorTransicao: operatorName
     };
 
-    const fetchData = await axios.get(`${url}`);
+    const fetchData = await axios.get(`${url}`, { params });
     const data = fetchData.data;
     return data;
   } catch (error) {
