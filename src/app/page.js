@@ -4,9 +4,9 @@ import { useEffect, useState } from "react";
 import { ButtonSearch } from "./components/ButtonSearch"
 import { FilterArea } from "./components/FilterArea"
 import { ShowMonetaryValues } from "./components/ShowMonetaryValues";
-import { BanckStatementArea } from "./components/BankStatementArea";
 import { MoreBankStatements } from "./components/MoreBankStatements";
 import { fetchApi } from "./services/fetchApi";
+import { BankStatementArea } from "./components/BankStatementArea";
 
 export default function Home() {
   const [transactions , setTransaction] = useState('')
@@ -20,6 +20,7 @@ export default function Home() {
     try {
       const response = await fetchApi(filters);
       setTransaction(response);
+      console.log(response)
     } catch (error) {
       console.log("Erro no envio da requisição")
     }
@@ -35,7 +36,7 @@ export default function Home() {
         <FilterArea filterData={filters} setFilterData={setFilters}/>
         <ButtonSearch onClick={() => fetchData()} />
         <ShowMonetaryValues />
-        <BanckStatementArea />
+        <BankStatementArea list={transactions}/>
         <MoreBankStatements />
       </div>
     </div>
