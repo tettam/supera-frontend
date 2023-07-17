@@ -1,21 +1,28 @@
 'use client'
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ButtonSearch } from "./components/ButtonSearch"
 import { FilterArea } from "./components/FilterArea"
 import { ShowMonetaryValues } from "./components/ShowMonetaryValues";
 import { BanckStatementArea } from "./components/BankStatementArea";
-import { MoreBankStatements, MoreExtracts } from "./components/MoreBankStatements";
+import { MoreBankStatements } from "./components/MoreBankStatements";
+import { fetchApi } from "./services/fetchApi";
 
 export default function Home() {
+  const [transactions , setTransaction] = useState('')
   const [filters , setFilters] = useState({
     startDate: null,
     endDate: null,
     operatorName: '',
   })
 
-  const handleClick = () => {
-    console.log(filters);
+  const fetchData = async () => {
+    try {
+      const response = await fetchApi(filters);
+      setTransaction(response);
+    } catch (error) {
+      console.log("Erro no envio da requisição")
+    }
   }
 
   return (
@@ -26,7 +33,7 @@ export default function Home() {
       <div className="container flex max-w-screen-lg m-auto h-screen mb-20 p-4 flex-col">
 
         <FilterArea filterData={filters} setFilterData={setFilters}/>
-        <ButtonSearch onClick={handleClick} />
+        <ButtonSearch onClick={() => fetchData()} />
         <ShowMonetaryValues />
         <BanckStatementArea />
         <MoreBankStatements />
