@@ -5,6 +5,7 @@ import { ButtonSearch } from "./components/ButtonSearch"
 import { FilterArea } from "./components/FilterArea"
 import { ShowMonetaryValues } from "./components/ShowMonetaryValues";
 import { BanckStatementArea } from "./components/BankStatementArea";
+import { MoreBankStatements, MoreExtracts } from "./components/MoreBankStatements";
 
 export default function Home() {
   const [filters , setFilters] = useState({
@@ -28,6 +29,7 @@ export default function Home() {
         <ButtonSearch onClick={handleClick} />
         <ShowMonetaryValues />
         <BanckStatementArea />
+        <MoreBankStatements />
       </div>
     </div>
   )
