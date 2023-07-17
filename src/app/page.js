@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { ButtonSearch } from "./components/ButtonSearch"
 import { FilterArea } from "./components/FilterArea"
+import { ShowMonetaryValues } from "./components/ShowMonetaryValues";
 
 export default function Home() {
   const [filters , setFilters] = useState({
@@ -24,6 +25,8 @@ export default function Home() {
 
         <FilterArea filterData={filters} setFilterData={setFilters}/>
         <ButtonSearch onClick={handleClick} />
+        <ShowMonetaryValues />
+        {/* tabela */}
       </div>
     </div>
   )
