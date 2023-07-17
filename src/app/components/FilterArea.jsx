@@ -7,7 +7,7 @@ export const FilterArea = ({filterData , setFilterData}) => {
         <div>
           <h3 className="text-white">Data de Inicío</h3>
           <input 
-            value={startDate}
+            value={startDate || ''}
             type="date" 
             name="dataInicio" 
             id="dataInicio"
@@ -21,7 +21,7 @@ export const FilterArea = ({filterData , setFilterData}) => {
         <div>
           <h3 className="text-white">Data Final</h3>
           <input
-            value={endDate}
+            value={endDate || ''}
             type="date" 
             name="dataFinal" 
             id="dataFinal"
@@ -35,11 +35,11 @@ export const FilterArea = ({filterData , setFilterData}) => {
         <div>
           <h3 className="text-white">Nome do operador</h3>
           <input 
-            value={operatorName}
+            value={operatorName || ''}
             type="text"
             name="nomeOperadorTransicao" 
             id="nomeOperadorTransicao"
-            onChange={(e) => setFilterData({...filterData, startDate: e.target.value})}
+            onChange={(e) => setFilterData({...filterData, operatorName: e.target.value})}
             className="text-slate-700 rounded-md p-1 outline-none w-36"
           />
         </div>
