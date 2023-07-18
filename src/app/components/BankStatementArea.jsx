@@ -1,6 +1,5 @@
 import { BankStatementItem } from "./BankStatementItem"
 
-
 export const BankStatementArea = ({ list }) => {
   return(
     <table className="shadow-lg justi p-2 mt-8 table-auto">

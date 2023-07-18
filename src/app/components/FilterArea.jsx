@@ -1,3 +1,5 @@
+"use client"
+
 export const FilterArea = ({filterData , setFilterData}) => {
   const { startDate , endDate, operatorName} = filterData;
 
