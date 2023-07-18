@@ -2,7 +2,7 @@ import { BankStatementItem } from "./BankStatementItem"
 
 export const BankStatementArea = ({ list }) => {
   return(
-    <table className="shadow-lg justi p-2 mt-8 table-auto">
+    <table className="shadow-lg justi p-2 mt-8 ">
       <thead className="border-blue-600 border-4 rounded-xl">
         <tr className="">
           <th className="text-left p-2 border-blue-600 border-4">Data</th>

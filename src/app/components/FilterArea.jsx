@@ -4,7 +4,7 @@ export const FilterArea = ({filterData , setFilterData}) => {
   const { startDate , endDate, operatorName} = filterData;
 
   return(
-    <div className="flex h-20 w-full -mt-14 rounded-md overflow-hidden text-sm font-medium text-gray-900 group bg-gradient-to-br from-blue-700 to-slate-800 group-hover:from-blue-500 hover:text-white dark:text-white focus:ring-4">
+    <div className="flex h-28 w-full -mt-14 rounded-md overflow-hidden text-sm font-medium text-gray-900 group bg-gradient-to-br from-blue-700 to-slate-800 group-hover:from-blue-500 hover:text-white dark:text-white focus:ring-4 flex-wrap">
       <div className="flex flex-1 items-center justify-center flex-col">
         <div>
           <h3 className="text-white">Data de Inicío</h3>

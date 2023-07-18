@@ -83,7 +83,7 @@ export default function Home() {
           <BankStatementArea 
           list={transactions.transferencias}
         />
-        )}/
+        )}
         <MoreBankStatements />            
       </div>
 
