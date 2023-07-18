@@ -78,12 +78,12 @@ export default function Home() {
           somaTotal={transactions?.somaTotal} 
           somaFiltrado={transactions?.somaFiltrado} 
         />
-        
+
         {transactions !== undefined && transactions !== null && (
           <BankStatementArea 
           list={transactions.transferencias}
         />
-        )}
+        )}/
         <MoreBankStatements />            
       </div>
 
