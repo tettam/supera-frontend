@@ -1,5 +1,5 @@
 import axios from "axios";
-import { formatToLocalDateTime } from "../helpers/dataFilter";
+import { formatNameSearch, formatToLocalDateTime } from "../helpers/dataFilter";
 
 export const fetchApi = async (id, filters) => {
   try {
@@ -12,13 +12,13 @@ export const fetchApi = async (id, filters) => {
     const params = {
       dataInicio: startDate && formatToLocalDateTime(startDate),
       dataFinal: endDate && formatToLocalDateTime(endDate),
-      nomeOperadorTransicao: operatorName
+      nomeOperadorTransicao: operatorName && formatNameSearch(operatorName)
     };
 
     const fetchData = await axios.get(`${url}`, { params });
     const data = fetchData.data;
     return data;
   } catch (error) {
-    throw new Error("Erro ao buscar dados")
+    throw new Error("Informações não encontradas")
   }
 }

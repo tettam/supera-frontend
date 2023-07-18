@@ -1,12 +1,13 @@
 "use client"
 
-export const ModalAccountBack = ( { accountId, setAccountId , onCLick} ) => {
+export const ModalAccountBack = ( { accountId, setAccountId , onCLick, message} ) => {
   return(
     <div 
       className="fixed flex items-center justify-center z-50 w-full h-screen top-0 bottom-0 bg-black bg-opacity-60">
-      <div className="bg-white w-80 h-48 rounded-xl flex items-center flex-col p-2">
+      <div className="bg-white w-80 h-52 rounded-xl flex items-center flex-col p-2">
         <h2 className="mt-4">Qual a conta que você deseja acessar?</h2>
-        <div className="flex mt-6 items-center">
+        <p className="text-red-500 text-xs p-2">{message}</p>
+        <div className="flex mt-2 items-center">
           <h5 className="font-semibold">Conta:</h5>
           <input
             value={accountId}

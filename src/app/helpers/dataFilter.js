@@ -14,3 +14,8 @@ export const formatToLocalDateTime = (dateString) => {
   const formattedDate = date.toISOString();
   return formattedDate;
 }
+
+export const formatNameSearch = (name) => {
+  const newName = name.substring(0,1).toUpperCase() + name.substring(1).toLowerCase();
+  return newName;
+}

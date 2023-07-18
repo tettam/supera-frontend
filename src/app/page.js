@@ -8,10 +8,12 @@ import { MoreBankStatements } from "./components/MoreBankStatements";
 import { fetchApi } from "./services/fetchApi";
 import { BankStatementArea } from "./components/BankStatementArea";
 import { ModalAccountBack } from "./components/ModalAccountBack";
+import { Exit } from "./components/Exit";
 
 export default function Home() {
   const [id , setId] = useState('');
-  const [transactions , setTransaction] = useState(null)
+  const [messageErro , setMessageErro] = useState('');
+  const [transactions , setTransaction] = useState(null);
   const [showModal, setShowModal] = useState(true);
   const [filters , setFilters] = useState({
     startDate: null,
@@ -21,15 +23,17 @@ export default function Home() {
 
   const fetchData = async () => {
     try {
+      if(!id) {
+        setMessageErro("*Campo obrigatório");
+        return;
+      }
       const response = await fetchApi(id, filters);
       setTransaction(response);
       setShowModal(false)
       resetFilter();
     } catch (error) {
-      resetFilter()
-      setTransaction('')
-      setId('')
-      console.log("Erro no envio da requisição")
+      setMessageErro('*Conta não encontrada')
+      resetParams()
     }
   }
 
@@ -40,16 +44,27 @@ export default function Home() {
     });
   }
 
-  const handleFetchApi = () => {
-    fetchData()
+  const logout = () => {
+    resetParams()
+    setMessageErro('')
+  }
+
+  const resetParams = () => {
+    setId('')
+    resetFilter()
+    setTransaction(null)
+    setShowModal(true)
   }
 
   return (
-    <div className="relative">
+    <div className="">    
       <header className=" bg-black h-40 flex justify-center">
         <h1 className="text-white font-bold text-4xl pt-4">Sistema Bancário</h1>
       </header>
       <div className="container flex max-w-screen-lg m-auto h-screen mb-20 p-4 flex-col">
+      {transactions !== undefined && transactions !== null && (
+        <Exit onClick={logout} />
+      )}
 
         <FilterArea 
           filterData={filters} 
@@ -58,12 +73,12 @@ export default function Home() {
         <ButtonSearch 
           onClick={fetchData} 
         />
-        <ShowMonetaryValues 
-          somaTotal={transactions?.somaTotal} 
-          somaFiltrado={transactions?.somaFiltrado} 
-        />
 
         {transactions !== undefined && transactions !== null && (
+          <ShowMonetaryValues 
+          somaTotal={transactions?.somaTotal} 
+          somaFiltrado={transactions?.somaFiltrado} 
+        /> &&
           <BankStatementArea 
           list={transactions.transferencias}
         />
@@ -72,10 +87,11 @@ export default function Home() {
       </div>
 
       {showModal &&
-        <ModalAccountBack 
+        <ModalAccountBack
+        message={messageErro}
         accountId={id} 
         setAccountId={setId} 
-        onCLick={handleFetchApi} 
+        onCLick={fetchData} 
       />   
       } 
       
