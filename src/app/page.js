@@ -74,11 +74,12 @@ export default function Home() {
           onClick={fetchData} 
         />
 
-        {transactions !== undefined && transactions !== null && (
-          <ShowMonetaryValues 
+        <ShowMonetaryValues 
           somaTotal={transactions?.somaTotal} 
           somaFiltrado={transactions?.somaFiltrado} 
-        /> &&
+        />
+        
+        {transactions !== undefined && transactions !== null && (
           <BankStatementArea 
           list={transactions.transferencias}
         />
